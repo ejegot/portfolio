@@ -19,6 +19,8 @@ defmodule PortfolioWeb.Router do
 
     live "/", HomeLive
     live "/learning", LearningLive
+    live "/projects", ProjectsLive
+    live "/projects/:slug", ProjectShowLive
   end
 
 

@@ -51,6 +51,18 @@ defmodule PortfolioWeb.ProjectShowLive do
         >
           {@project.technologies}
         </p>
+        <a
+          :if={link = project_link(@project.slug)}
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group inline-flex min-h-11 items-center gap-2 text-sm font-medium tracking-wide text-zinc-950 transition-opacity duration-200 hover:opacity-60 sm:min-h-0"
+        >
+          <span class="underline decoration-zinc-300 underline-offset-4 transition-colors duration-200 group-hover:decoration-zinc-950">
+            {link.label}
+          </span>
+          <span class="transition-transform duration-200 group-hover:translate-x-0.5">→</span>
+        </a>
       </header>
 
       <section class="border-t border-zinc-200">
@@ -162,6 +174,16 @@ defmodule PortfolioWeb.ProjectShowLive do
   end
 
   defp project_visual(_slug), do: nil
+
+  defp project_link("gym-system") do
+    %{href: "https://github.com/ejegot/gym", label: "View source"}
+  end
+
+  defp project_link("basketball-system") do
+    %{href: "https://ligahoops.com", label: "View live site"}
+  end
+
+  defp project_link(_slug), do: nil
 
   defp get_project(slug), do: Map.get(projects_by_slug(), slug)
 

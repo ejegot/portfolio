@@ -7,10 +7,34 @@
   html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: #f6f3ee;
   }
 
   a:focus-visible {
     outline: 2px solid theme("colors.zinc.950");
     outline-offset: 2px;
   }
+}
+
+/* Decorative warm paper + fine grid. No semantic meaning. */
+.portfolio-bg {
+  background-color: #f6f3ee;
+}
+
+.portfolio-bg::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(62, 50, 38, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(62, 50, 38, 0.07) 1px, transparent 1px),
+    linear-gradient(rgba(62, 50, 38, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(62, 50, 38, 0.04) 1px, transparent 1px);
+  background-size:
+    24px 24px,
+    24px 24px,
+    96px 96px,
+    96px 96px;
 }

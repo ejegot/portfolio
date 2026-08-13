@@ -56,6 +56,10 @@ defmodule PortfolioWeb.ProjectShowLiveTest do
     assert html =~ "Project Visual"
     assert html =~ ~s(src="/images/gym-system-showcase.png")
     assert html =~ ~s(alt="Gym System dashboard")
+    assert html =~ "View source"
+    assert html =~ ~s(href="https://github.com/ejegot/gym")
+    assert html =~ ~s(target="_blank")
+    assert html =~ ~s(rel="noopener noreferrer")
     assert html =~ "I learned how to build a system from scratch"
     assert html =~ "My biggest challenge was not knowing where to start."
   end
@@ -81,6 +85,10 @@ defmodule PortfolioWeb.ProjectShowLiveTest do
     assert html =~ "Project Visual"
     assert html =~ ~s(src="/images/basketball-system-showcase.png")
     assert html =~ ~s(alt="Basketball System dashboard")
+    assert html =~ "View live site"
+    assert html =~ ~s(href="https://ligahoops.com")
+    assert html =~ ~s(target="_blank")
+    assert html =~ ~s(rel="noopener noreferrer")
     assert html =~ "I learned how to build a system from scratch"
     assert html =~ "My biggest challenge was not knowing where to start."
   end
@@ -104,6 +112,10 @@ defmodule PortfolioWeb.ProjectShowLiveTest do
     assert html =~ "I learned how to build a procurement system"
     assert html =~ "My biggest challenge was that procurement was new to me."
     refute html =~ "Current status"
+    refute html =~ "View source"
+    refute html =~ "View live site"
+    refute html =~ "https://github.com/ejegot/gym"
+    refute html =~ "https://ligahoops.com"
   end
 
   test "shows current status only when present", %{conn: conn} do

@@ -14,50 +14,70 @@ defmodule PortfolioWeb.LearningLive do
   @impl true
   def render(assigns) do
     ~H"""
-    <div class="space-y-16">
-      <section class="space-y-5">
-        <p class="text-sm font-medium tracking-wide text-zinc-500 uppercase">
-          Learning Portfolio
-        </p>
-        <h1 class="text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl">
-          Learning journey
+    <div class="space-y-16 sm:space-y-20">
+      <section class="space-y-6 pt-2 sm:pt-6">
+        <h1 class="font-display text-4xl font-semibold tracking-display text-zinc-950 sm:text-5xl sm:leading-[1.05] lg:text-6xl">
+          LEARNING JOURNEY
         </h1>
-        <p class="max-w-2xl text-base leading-relaxed text-zinc-600 sm:text-lg">
-          A chronological log of what I study, what I build, where I get stuck,
-          and what I try next. Newest entries first.
+        <p class="max-w-md text-base leading-relaxed text-zinc-600 sm:text-lg">
+          Documenting what I learn while building real systems.
         </p>
       </section>
 
-      <section class="space-y-12">
-        <article :for={entry <- @entries} class="space-y-5 border-t border-zinc-100 pt-10 first:border-t-0 first:pt-0">
-          <header class="space-y-2">
-            <time class="text-sm text-zinc-500" datetime={Date.to_iso8601(entry.date)}>
-              {Calendar.strftime(entry.date, "%B %-d, %Y")}
-            </time>
-            <h2 class="text-xl font-semibold tracking-tight text-zinc-900">
-              {entry.title}
-            </h2>
-          </header>
+      <section>
+        <ol class="border-t border-zinc-200">
+          <li
+            :for={entry <- @entries}
+            class="space-y-8 border-b border-zinc-200 py-12 sm:space-y-10 sm:py-16"
+          >
+            <header class="space-y-4">
+              <time
+                class="block text-xs font-medium tracking-[0.16em] text-zinc-400 uppercase"
+                datetime={Date.to_iso8601(entry.date)}
+              >
+                {Calendar.strftime(entry.date, "%B %-d, %Y")}
+              </time>
+              <h2 class="font-display text-2xl font-semibold tracking-display text-zinc-950 sm:text-3xl sm:leading-snug">
+                {entry.title}
+              </h2>
+            </header>
 
-          <dl class="space-y-5">
-            <div class="space-y-1">
-              <dt class="text-sm font-medium text-zinc-900">What I learned</dt>
-              <dd class="text-sm leading-relaxed text-zinc-600">{entry.what_i_learned}</dd>
-            </div>
-            <div class="space-y-1">
-              <dt class="text-sm font-medium text-zinc-900">What I built</dt>
-              <dd class="text-sm leading-relaxed text-zinc-600">{entry.what_i_built}</dd>
-            </div>
-            <div class="space-y-1">
-              <dt class="text-sm font-medium text-zinc-900">What I struggled with</dt>
-              <dd class="text-sm leading-relaxed text-zinc-600">{entry.what_i_struggled_with}</dd>
-            </div>
-            <div class="space-y-1">
-              <dt class="text-sm font-medium text-zinc-900">Next step</dt>
-              <dd class="text-sm leading-relaxed text-zinc-600">{entry.next_step}</dd>
-            </div>
-          </dl>
-        </article>
+            <dl class="space-y-7">
+              <div class="space-y-2">
+                <dt class="text-xs font-medium tracking-[0.14em] text-zinc-400 uppercase">
+                  What I learned
+                </dt>
+                <dd class="text-base leading-relaxed text-zinc-600 sm:text-lg sm:leading-relaxed">
+                  {entry.what_i_learned}
+                </dd>
+              </div>
+              <div class="space-y-2">
+                <dt class="text-xs font-medium tracking-[0.14em] text-zinc-400 uppercase">
+                  What I built
+                </dt>
+                <dd class="text-base leading-relaxed text-zinc-600 sm:text-lg sm:leading-relaxed">
+                  {entry.what_i_built}
+                </dd>
+              </div>
+              <div class="space-y-2">
+                <dt class="text-xs font-medium tracking-[0.14em] text-zinc-400 uppercase">
+                  What I struggled with
+                </dt>
+                <dd class="text-base leading-relaxed text-zinc-600 sm:text-lg sm:leading-relaxed">
+                  {entry.what_i_struggled_with}
+                </dd>
+              </div>
+              <div class="space-y-2">
+                <dt class="text-xs font-medium tracking-[0.14em] text-zinc-400 uppercase">
+                  Next step
+                </dt>
+                <dd class="text-base leading-relaxed text-zinc-600 sm:text-lg sm:leading-relaxed">
+                  {entry.next_step}
+                </dd>
+              </div>
+            </dl>
+          </li>
+        </ol>
       </section>
     </div>
     """

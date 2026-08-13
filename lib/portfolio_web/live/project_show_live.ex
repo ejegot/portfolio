@@ -24,68 +24,90 @@ defmodule PortfolioWeb.ProjectShowLive do
   @impl true
   def render(assigns) do
     ~H"""
-    <div class="space-y-16">
-      <div>
+    <div class="space-y-16 sm:space-y-20">
+      <div class="pt-2">
         <.link
           navigate={~p"/projects"}
-          class="text-sm text-zinc-500 hover:text-zinc-900"
+          class="group inline-flex items-center gap-1.5 text-sm text-zinc-400 transition-colors duration-200 hover:text-zinc-950"
         >
-          ← Back to Projects
+          <span class="transition-transform duration-200 group-hover:-translate-x-0.5">←</span>
+          Back to projects
         </.link>
       </div>
 
-      <section class="space-y-5">
-        <p class="text-sm font-medium tracking-wide text-zinc-500 uppercase">
-          Project
-        </p>
-        <h1 class="text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl">
+      <header class="space-y-6 sm:space-y-8">
+        <h1 class="font-display text-4xl font-semibold tracking-display text-zinc-950 sm:text-5xl sm:leading-[1.05] lg:text-6xl">
           {@project.name}
         </h1>
-        <p :if={@project.short_description != ""} class="max-w-2xl text-base leading-relaxed text-zinc-600 sm:text-lg">
+        <p
+          :if={@project.short_description != ""}
+          class="max-w-xl text-lg leading-snug text-zinc-600 sm:text-xl sm:leading-snug"
+        >
           {@project.short_description}
         </p>
-      </section>
+        <p
+          :if={@project.technologies != ""}
+          class="text-xs font-medium tracking-[0.14em] text-zinc-400 uppercase"
+        >
+          {@project.technologies}
+        </p>
+      </header>
 
-      <section>
-        <dl class="space-y-5 border-t border-zinc-100 pt-10">
-          <div class="space-y-1">
-            <dt class="text-sm font-medium text-zinc-900">Technologies</dt>
-            <dd class="text-sm leading-relaxed text-zinc-600">
-              {display(@project.technologies)}
-            </dd>
-          </div>
-          <div class="space-y-1">
-            <dt class="text-sm font-medium text-zinc-900">What I built</dt>
-            <dd class="text-sm leading-relaxed text-zinc-600">
-              {display(@project.what_i_built)}
-            </dd>
-          </div>
-          <div class="space-y-1">
-            <dt class="text-sm font-medium text-zinc-900">What I learned</dt>
-            <dd class="text-sm leading-relaxed text-zinc-600">
-              {display(@project.what_i_learned)}
-            </dd>
-          </div>
-          <div class="space-y-1">
-            <dt class="text-sm font-medium text-zinc-900">Challenges</dt>
-            <dd class="text-sm leading-relaxed text-zinc-600">
-              {display(@project.challenges)}
-            </dd>
-          </div>
-          <div class="space-y-1">
-            <dt class="text-sm font-medium text-zinc-900">Current status</dt>
-            <dd class="text-sm leading-relaxed text-zinc-600">
-              {display(@project.current_status)}
-            </dd>
-          </div>
-        </dl>
+      <section class="border-t border-zinc-200">
+        <div
+          :if={@project.short_description != ""}
+          class="space-y-3 border-b border-zinc-200 py-10 sm:py-14"
+        >
+          <h2 class="text-xs font-medium tracking-[0.14em] text-zinc-400 uppercase">
+            Overview
+          </h2>
+          <p class="text-base leading-relaxed text-zinc-600 sm:text-lg sm:leading-relaxed">
+            {@project.short_description}
+          </p>
+        </div>
+
+        <div class="space-y-3 border-b border-zinc-200 py-10 sm:py-14">
+          <h2 class="text-xs font-medium tracking-[0.14em] text-zinc-400 uppercase">
+            What I built
+          </h2>
+          <p class="text-base leading-relaxed text-zinc-600 sm:text-lg sm:leading-relaxed">
+            {@project.what_i_built}
+          </p>
+        </div>
+
+        <div class="space-y-3 border-b border-zinc-200 py-10 sm:py-14">
+          <h2 class="text-xs font-medium tracking-[0.14em] text-zinc-400 uppercase">
+            What I learned
+          </h2>
+          <p class="text-base leading-relaxed text-zinc-600 sm:text-lg sm:leading-relaxed">
+            {@project.what_i_learned}
+          </p>
+        </div>
+
+        <div class="space-y-3 border-b border-zinc-200 py-10 sm:py-14">
+          <h2 class="text-xs font-medium tracking-[0.14em] text-zinc-400 uppercase">
+            Challenges
+          </h2>
+          <p class="text-base leading-relaxed text-zinc-600 sm:text-lg sm:leading-relaxed">
+            {@project.challenges}
+          </p>
+        </div>
+
+        <div
+          :if={@project.current_status != ""}
+          class="space-y-3 border-b border-zinc-200 py-10 sm:py-14"
+        >
+          <h2 class="text-xs font-medium tracking-[0.14em] text-zinc-400 uppercase">
+            Current status
+          </h2>
+          <p class="text-base leading-relaxed text-zinc-600 sm:text-lg sm:leading-relaxed">
+            {@project.current_status}
+          </p>
+        </div>
       </section>
     </div>
     """
   end
-
-  defp display(""), do: "—"
-  defp display(value), do: value
 
   defp get_project(slug), do: Map.get(projects_by_slug(), slug)
 

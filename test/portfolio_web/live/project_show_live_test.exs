@@ -20,14 +20,31 @@ defmodule PortfolioWeb.ProjectShowLiveTest do
       {:ok, _view, html} = live(conn, ~p"/projects/#{slug}")
 
       assert html =~ name
-      assert html =~ "Technologies"
+      assert html =~ "Overview"
       assert html =~ "What I built"
       assert html =~ "What I learned"
       assert html =~ "Challenges"
-      assert html =~ "Current status"
-      assert html =~ "Back to Projects"
+      assert html =~ "Back to projects"
       assert html =~ ~s(href="/projects")
     end
+  end
+
+  test "shows technologies when present and hides when empty", %{conn: conn} do
+    {:ok, _view, gym_html} = live(conn, ~p"/projects/gym-system")
+    assert gym_html =~ "Elixir · Phoenix LiveView · PostgreSQL · Tailwind CSS"
+
+    {:ok, _view, aisof_html} = live(conn, ~p"/projects/aisof")
+    refute aisof_html =~ "Elixir · Phoenix LiveView · PostgreSQL · Tailwind CSS"
+    refute aisof_html =~ "Elixir · Phoenix LiveView</p>"
+  end
+
+  test "shows current status only when present", %{conn: conn} do
+    {:ok, _view, portfolio_html} = live(conn, ~p"/projects/learning-portfolio")
+    assert portfolio_html =~ "Current status"
+    assert portfolio_html =~ "In progress"
+
+    {:ok, _view, gym_html} = live(conn, ~p"/projects/gym-system")
+    refute gym_html =~ "Current status"
   end
 
   test "invalid slug returns 404", %{conn: conn} do

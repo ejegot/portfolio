@@ -15,7 +15,14 @@ module.exports = {
     extend: {
       colors: {
         brand: "#FD4F00",
-      }
+      },
+      fontFamily: {
+        sans: ["DM Sans", "ui-sans-serif", "system-ui", "sans-serif"],
+        display: ["Syne", "ui-sans-serif", "system-ui", "sans-serif"],
+      },
+      letterSpacing: {
+        display: "-0.03em",
+      },
     },
   },
   plugins: [

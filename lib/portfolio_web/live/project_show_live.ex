@@ -24,83 +24,108 @@ defmodule PortfolioWeb.ProjectShowLive do
   @impl true
   def render(assigns) do
     ~H"""
-    <div class="space-y-16 sm:space-y-20">
-      <div class="pt-2">
+    <div class="min-w-0 space-y-12 sm:space-y-20">
+      <div class="pt-1 sm:pt-2">
         <.link
           navigate={~p"/projects"}
-          class="group inline-flex items-center gap-1.5 text-sm text-zinc-400 transition-colors duration-200 hover:text-zinc-950"
+          class="group inline-flex min-h-11 items-center gap-1.5 text-sm text-zinc-400 transition-colors duration-200 hover:text-zinc-950 sm:min-h-0"
         >
           <span class="transition-transform duration-200 group-hover:-translate-x-0.5">←</span>
           Back to projects
         </.link>
       </div>
 
-      <header class="space-y-6 sm:space-y-8">
-        <h1 class="font-display text-4xl font-semibold tracking-display text-zinc-950 sm:text-5xl sm:leading-[1.05] lg:text-6xl">
+      <header class="space-y-5 sm:space-y-8">
+        <h1 class="break-words font-display text-3xl font-semibold leading-tight tracking-display text-zinc-950 sm:text-5xl sm:leading-[1.05] lg:text-6xl">
           {@project.name}
         </h1>
         <p
           :if={@project.short_description != ""}
-          class="max-w-xl text-lg leading-snug text-zinc-600 sm:text-xl sm:leading-snug"
+          class="max-w-xl text-base leading-relaxed text-zinc-600 sm:text-xl sm:leading-snug"
         >
           {@project.short_description}
         </p>
         <p
           :if={@project.technologies != ""}
-          class="text-xs font-medium tracking-[0.14em] text-zinc-400 uppercase"
+          class="break-words text-xs font-medium leading-relaxed tracking-[0.08em] text-zinc-400 uppercase sm:tracking-[0.14em]"
         >
           {@project.technologies}
         </p>
       </header>
 
       <section class="border-t border-zinc-200">
-        <div
-          :if={@project.short_description != ""}
-          class="space-y-3 border-b border-zinc-200 py-10 sm:py-14"
-        >
-          <h2 class="text-xs font-medium tracking-[0.14em] text-zinc-400 uppercase">
+        <div :if={@project.overview != ""} class="space-y-3 border-b border-zinc-200 py-8 sm:py-14">
+          <h2 class="text-xs font-medium tracking-[0.12em] text-zinc-400 uppercase sm:tracking-[0.14em]">
             Overview
           </h2>
-          <p class="text-base leading-relaxed text-zinc-600 sm:text-lg sm:leading-relaxed">
-            {@project.short_description}
+          <p class="break-words text-base leading-relaxed text-zinc-600 sm:text-lg sm:leading-relaxed">
+            {@project.overview}
           </p>
         </div>
 
-        <div class="space-y-3 border-b border-zinc-200 py-10 sm:py-14">
-          <h2 class="text-xs font-medium tracking-[0.14em] text-zinc-400 uppercase">
+        <div class="space-y-3 border-b border-zinc-200 py-8 sm:py-14">
+          <h2 class="text-xs font-medium tracking-[0.12em] text-zinc-400 uppercase sm:tracking-[0.14em]">
             What I built
           </h2>
-          <p class="text-base leading-relaxed text-zinc-600 sm:text-lg sm:leading-relaxed">
+          <p class="break-words text-base leading-relaxed text-zinc-600 sm:text-lg sm:leading-relaxed">
             {@project.what_i_built}
           </p>
         </div>
 
-        <div class="space-y-3 border-b border-zinc-200 py-10 sm:py-14">
-          <h2 class="text-xs font-medium tracking-[0.14em] text-zinc-400 uppercase">
+        <div
+          :if={@project.key_features != []}
+          class="space-y-3 border-b border-zinc-200 py-8 sm:py-14"
+        >
+          <h2 class="text-xs font-medium tracking-[0.12em] text-zinc-400 uppercase sm:tracking-[0.14em]">
+            Key Features
+          </h2>
+          <ul class="space-y-2 text-base leading-relaxed text-zinc-600 sm:text-lg sm:leading-relaxed">
+            <li :for={feature <- @project.key_features} class="break-words">{feature}</li>
+          </ul>
+        </div>
+
+        <div
+          :if={visual = project_visual(@project.slug)}
+          class="space-y-4 border-b border-zinc-200 py-8 sm:space-y-5 sm:py-14"
+        >
+          <h2 class="text-xs font-medium tracking-[0.12em] text-zinc-400 uppercase sm:tracking-[0.14em]">
+            Project Visual
+          </h2>
+          <img
+            src={visual.src}
+            alt={visual.alt}
+            width={visual.width}
+            height={visual.height}
+            class="block h-auto w-full max-w-full rounded-lg border border-zinc-200 object-contain"
+          />
+        </div>
+
+        <div class="space-y-3 border-b border-zinc-200 py-8 sm:py-14">
+          <h2 class="text-xs font-medium tracking-[0.12em] text-zinc-400 uppercase sm:tracking-[0.14em]">
             What I learned
           </h2>
-          <p class="text-base leading-relaxed text-zinc-600 sm:text-lg sm:leading-relaxed">
+          <p class="break-words text-base leading-relaxed text-zinc-600 sm:text-lg sm:leading-relaxed">
             {@project.what_i_learned}
           </p>
         </div>
 
-        <div class="space-y-3 border-b border-zinc-200 py-10 sm:py-14">
-          <h2 class="text-xs font-medium tracking-[0.14em] text-zinc-400 uppercase">
+        <div class="space-y-3 border-b border-zinc-200 py-8 sm:py-14">
+          <h2 class="text-xs font-medium tracking-[0.12em] text-zinc-400 uppercase sm:tracking-[0.14em]">
             Challenges
           </h2>
-          <p class="text-base leading-relaxed text-zinc-600 sm:text-lg sm:leading-relaxed">
+          <p class="break-words text-base leading-relaxed text-zinc-600 sm:text-lg sm:leading-relaxed">
             {@project.challenges}
           </p>
         </div>
 
         <div
           :if={@project.current_status != ""}
-          class="space-y-3 border-b border-zinc-200 py-10 sm:py-14"
+          class="space-y-3 border-b border-zinc-200 py-8 sm:py-14"
         >
-          <h2 class="text-xs font-medium tracking-[0.14em] text-zinc-400 uppercase">
+          <h2 class="text-xs font-medium tracking-[0.12em] text-zinc-400 uppercase sm:tracking-[0.14em]">
             Current status
           </h2>
-          <p class="text-base leading-relaxed text-zinc-600 sm:text-lg sm:leading-relaxed">
+          <p class="break-words text-base leading-relaxed text-zinc-600 sm:text-lg sm:leading-relaxed">
             {@project.current_status}
           </p>
         </div>
@@ -108,6 +133,35 @@ defmodule PortfolioWeb.ProjectShowLive do
     </div>
     """
   end
+
+  defp project_visual("gym-system") do
+    %{
+      src: ~p"/images/gym-system-showcase.png",
+      alt: "Gym System dashboard",
+      width: 1536,
+      height: 390
+    }
+  end
+
+  defp project_visual("basketball-system") do
+    %{
+      src: ~p"/images/basketball-system-showcase.png",
+      alt: "Basketball System dashboard",
+      width: 1536,
+      height: 300
+    }
+  end
+
+  defp project_visual("aisof") do
+    %{
+      src: ~p"/images/aisof-showcase.png",
+      alt: "AISOF procurement system dashboard",
+      width: 1536,
+      height: 334
+    }
+  end
+
+  defp project_visual(_slug), do: nil
 
   defp get_project(slug), do: Map.get(projects_by_slug(), slug)
 
@@ -122,9 +176,23 @@ defmodule PortfolioWeb.ProjectShowLive do
         name: "Gym System",
         short_description:
           "A gym management system to track gym records and help gym businesses manage their operations.",
+        overview:
+          "A gym management system to track gym records and help gym businesses manage their operations.",
         technologies: "Elixir · Phoenix LiveView · PostgreSQL · Tailwind CSS",
         what_i_built:
           "I built a gym management system to track gym records and help gym businesses manage their operations.",
+        key_features: [
+          "Member Management",
+          "Membership Management",
+          "Payments and Receipts",
+          "Attendance Tracking",
+          "Staff and Roles",
+          "Branch Management",
+          "Notifications",
+          "QR Check-in",
+          "Digital Member ID",
+          "Reports"
+        ],
         what_i_learned:
           "I learned how to build a system from scratch, use Elixir to develop an application, and work with a database to store and manage data.",
         challenges:
@@ -135,10 +203,19 @@ defmodule PortfolioWeb.ProjectShowLive do
         slug: "basketball-system",
         name: "Basketball System",
         short_description:
-          "A basketball system that can track player and game statistics, provide online registration, and help manage the operations of a basketball league.",
+          "A basketball system that can track player and game statistics and provide online registration for running a basketball league.",
+        overview:
+          "A basketball system that can track stats and support online registration for running a basketball league.",
         technologies: "Elixir · Phoenix LiveView · PostgreSQL · Tailwind CSS",
         what_i_built:
-          "I built a basketball system that can track player and game statistics, provide online registration, and help manage the operations of a basketball league.",
+          "I built a basketball system that can track statistics and handle online registration to help run a basketball league.",
+        key_features: [
+          "Player Statistics",
+          "Team Management",
+          "Game Statistics",
+          "Online Registration",
+          "League Management"
+        ],
         what_i_learned:
           "I learned how to build a system from scratch, use Elixir to develop an application, and work with a database to store and manage data.",
         challenges:
@@ -150,9 +227,21 @@ defmodule PortfolioWeb.ProjectShowLive do
         name: "AISOF",
         short_description:
           "An end-to-end procurement system designed to support government organizations in managing their procurement processes.",
+        overview:
+          "An end-to-end procurement system designed to support government organizations in managing their procurement processes.",
         technologies: "",
         what_i_built:
           "I worked on a procurement system covering Purchase Requests, Supplier Management, Requests for Quotation, Canvassing and Quotations, Purchase Orders, Approvals, Procurement Tracking, and Reports.",
+        key_features: [
+          "Purchase Requests",
+          "Supplier Management",
+          "Requests for Quotation",
+          "Canvassing and Quotations",
+          "Purchase Orders",
+          "Approvals",
+          "Procurement Tracking",
+          "Reports"
+        ],
         what_i_learned:
           "I learned how to build a procurement system and how the procurement process works in practice.",
         challenges:
@@ -163,9 +252,11 @@ defmodule PortfolioWeb.ProjectShowLive do
         slug: "learning-portfolio",
         name: "Learning Portfolio",
         short_description: "This portfolio documents my coding journey and learning process.",
+        overview: "This portfolio documents my coding journey and learning process.",
         technologies: "Elixir · Phoenix LiveView",
         what_i_built:
           "A personal learning portfolio with Home, Learning Journey, and Projects pages using Phoenix LiveView.",
+        key_features: [],
         what_i_learned:
           "How the Phoenix router connects routes to LiveViews, how mount/3 assigns data to the socket, and how HEEx renders assigned data.",
         challenges:

@@ -1,12 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" class="[scrollbar-gutter:stable]">
+<html lang="en" class="max-w-full overflow-x-hidden [scrollbar-gutter:stable]">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="A learning portfolio documenting Eljhun Egot's journey building web applications with Elixir, Phoenix, databases, and real-world systems."
+    />
     <meta name="csrf-token" content={get_csrf_token()} />
-    <.live_title default="Eljhun Egot" suffix=" · Eljhun Egot">
+    <.live_title default="Eljhun Egot · Learning Portfolio" suffix=" · Eljhun Egot">
       {assigns[:page_title]}
     </.live_title>
+    <link rel="icon" type="image/svg+xml" href={~p"/images/logo.svg"} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -17,7 +22,7 @@
     <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
     </script>
   </head>
-  <body class="min-h-screen bg-zinc-50 font-sans text-zinc-950 antialiased">
+  <body class="min-h-screen max-w-full overflow-x-hidden bg-zinc-50 font-sans text-zinc-950 antialiased">
     {@inner_content}
   </body>
 </html>

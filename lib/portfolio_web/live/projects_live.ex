@@ -14,39 +14,38 @@ defmodule PortfolioWeb.ProjectsLive do
   @impl true
   def render(assigns) do
     ~H"""
-    <div class="space-y-16">
-      <section class="space-y-5">
-        <p class="text-sm font-medium tracking-wide text-zinc-500 uppercase">
-          Learning Portfolio
-        </p>
-        <h1 class="text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl">
-          Projects
+    <div class="space-y-16 sm:space-y-20">
+      <section class="space-y-6 pt-2 sm:pt-6">
+        <h1 class="font-display text-4xl font-semibold tracking-display text-zinc-950 sm:text-5xl sm:leading-[1.05] lg:text-6xl">
+          SELECTED WORK
         </h1>
-        <p class="max-w-2xl text-base leading-relaxed text-zinc-600 sm:text-lg">
-          Work from my coding journey — practice projects and this portfolio.
+        <p class="max-w-md text-base leading-relaxed text-zinc-600 sm:text-lg">
+          Projects I've built while learning software development.
         </p>
       </section>
 
       <section>
-        <ul class="space-y-8">
-          <li
-            :for={project <- @projects}
-            class="space-y-2 border-t border-zinc-100 pt-8 first:border-t-0 first:pt-0"
-          >
-            <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-              <.link
-                navigate={~p"/projects/#{project.slug}"}
-                class="text-lg font-medium text-zinc-900 hover:text-zinc-600"
-              >
-                {project.title}
-              </.link>
-              <span :if={project.technology != ""} class="text-sm text-zinc-400">
-                {project.technology}
+        <ul class="border-t border-zinc-200">
+          <li :for={project <- @projects} class="border-b border-zinc-200">
+            <.link
+              navigate={~p"/projects/#{project.slug}"}
+              class="group grid grid-cols-[1fr_auto] items-end gap-6 py-8 transition-colors duration-200 hover:bg-zinc-100/70 sm:gap-10 sm:py-10 -mx-2 px-2 sm:-mx-3 sm:px-3"
+            >
+              <div class="space-y-3">
+                <p class="text-xs tracking-[0.16em] text-zinc-400">
+                  {project.number}
+                </p>
+                <h2 class="font-display text-2xl font-semibold tracking-display text-zinc-950 transition-transform duration-200 group-hover:translate-x-1 sm:text-3xl">
+                  {project.title}
+                </h2>
+                <p class="text-base text-zinc-600">
+                  {project.summary}
+                </p>
+              </div>
+              <span class="pb-1 text-xl text-zinc-400 transition-all duration-200 group-hover:translate-x-1 group-hover:text-zinc-950">
+                →
               </span>
-            </div>
-            <p :if={project.description != ""} class="max-w-2xl text-sm leading-relaxed text-zinc-600">
-              {project.description}
-            </p>
+            </.link>
           </li>
         </ul>
       </section>
@@ -58,27 +57,27 @@ defmodule PortfolioWeb.ProjectsLive do
     [
       %{
         slug: "gym-system",
-        title: "Gym System",
-        technology: "Elixir · Phoenix LiveView",
-        description: "A gym management system built while learning Phoenix LiveView."
+        number: "01",
+        title: "GYM SYSTEM",
+        summary: "Gym management system"
       },
       %{
         slug: "basketball-system",
-        title: "Basketball System",
-        technology: "Elixir · Phoenix LiveView",
-        description: "A basketball system project built as part of my coding practice."
+        number: "02",
+        title: "BASKETBALL SYSTEM",
+        summary: "Basketball league system"
       },
       %{
         slug: "aisof",
+        number: "03",
         title: "AISOF",
-        technology: "",
-        description: ""
+        summary: "Government procurement system"
       },
       %{
         slug: "learning-portfolio",
-        title: "Learning Portfolio",
-        technology: "Elixir · Phoenix LiveView",
-        description: "This portfolio documents my coding journey and learning process."
+        number: "04",
+        title: "LEARNING PORTFOLIO",
+        summary: "My personal learning portfolio"
       }
     ]
   end

@@ -6,8 +6,7 @@ defmodule PortfolioWeb.HomeLive do
     socket =
       socket
       |> assign(:page_title, "Home")
-      |> assign(:learning, learning())
-      |> assign(:projects, featured_projects())
+      |> assign(:projects, selected_work())
 
     {:ok, socket}
   end
@@ -15,96 +14,139 @@ defmodule PortfolioWeb.HomeLive do
   @impl true
   def render(assigns) do
     ~H"""
-    <div class="space-y-16">
-      <section class="space-y-5">
-        <p class="text-sm font-medium tracking-wide text-zinc-500 uppercase">
-          Learning Portfolio
+    <div class="space-y-28 sm:space-y-36 lg:space-y-44">
+      <section class="space-y-8 pt-2 sm:space-y-10 sm:pt-6">
+        <p class="text-xs font-medium tracking-[0.18em] text-zinc-400 uppercase">
+          WEB DEVELOPER · LEARNER · BUILDER
         </p>
-        <h1 class="text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl">
-          Documenting my coding journey
+        <h1 class="max-w-2xl font-display text-4xl font-semibold tracking-display text-zinc-950 sm:text-5xl sm:leading-[1.08] lg:text-6xl lg:leading-[1.05]">
+          I build systems while learning how software actually works.
         </h1>
-        <p class="max-w-2xl text-base leading-relaxed text-zinc-600 sm:text-lg">
-          This site is a simple record of what I build while learning to code.
-          I share short notes on what I am studying and the projects I ship along the way —
-          progress over polish, one step at a time.
+        <p class="max-w-md text-base leading-relaxed text-zinc-600 sm:text-lg">
+          Documenting my journey through Elixir, Phoenix, databases, and building real-world applications.
         </p>
+        <.link
+          navigate={~p"/projects"}
+          class="group inline-flex items-center gap-2 pt-2 text-sm font-medium tracking-wide text-zinc-950 transition-opacity duration-200 hover:opacity-60"
+        >
+          <span class="underline decoration-zinc-300 underline-offset-4 transition-colors duration-200 group-hover:decoration-zinc-950">
+            View my work
+          </span>
+          <span class="transition-transform duration-200 group-hover:translate-x-0.5">→</span>
+        </.link>
       </section>
 
-      <section class="space-y-6">
-        <div class="space-y-2">
-          <h2 class="text-xl font-semibold tracking-tight text-zinc-900">
-            Currently learning
-          </h2>
-          <p class="text-sm text-zinc-500">
-            Focus areas I am working through right now.
-          </p>
-        </div>
-        <ul class="divide-y divide-zinc-100 border-y border-zinc-100">
-          <li
-            :for={item <- @learning}
-            class="flex flex-col gap-1 py-4 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8"
-          >
-            <span class="font-medium text-zinc-900">{item.title}</span>
-            <span class="text-sm text-zinc-500 sm:text-right">{item.note}</span>
+      <section class="space-y-10 sm:space-y-12">
+        <h2 class="font-display text-xs font-semibold tracking-[0.18em] text-zinc-400">
+          SELECTED WORK
+        </h2>
+        <ul class="border-t border-zinc-200">
+          <li :for={project <- @projects} class="border-b border-zinc-200">
+            <.link
+              navigate={~p"/projects/#{project.slug}"}
+              class="group grid grid-cols-[1fr_auto] items-end gap-6 py-8 transition-colors duration-200 hover:bg-zinc-100/70 sm:gap-10 sm:py-10 -mx-2 px-2 sm:-mx-3 sm:px-3"
+            >
+              <div class="space-y-3">
+                <p class="text-xs tracking-[0.16em] text-zinc-400">
+                  {project.number}
+                </p>
+                <h3 class="font-display text-2xl font-semibold tracking-display text-zinc-950 transition-transform duration-200 group-hover:translate-x-1 sm:text-3xl uppercase">
+                  {project.title}
+                </h3>
+                <p class="text-base text-zinc-600">
+                  {project.summary}
+                </p>
+              </div>
+              <span class="pb-1 text-xl text-zinc-400 transition-all duration-200 group-hover:translate-x-1 group-hover:text-zinc-950">
+                →
+              </span>
+            </.link>
           </li>
         </ul>
       </section>
 
-      <section class="space-y-6">
-        <div class="space-y-2">
-          <h2 class="text-xl font-semibold tracking-tight text-zinc-900">
-            Featured projects
-          </h2>
-          <p class="text-sm text-zinc-500">
-            Selected work from this learning path.
+      <section class="space-y-8 border-t border-zinc-200 pt-16 sm:space-y-10 sm:pt-24">
+        <h2 class="font-display text-xs font-semibold tracking-[0.18em] text-zinc-400">
+          LEARNING JOURNEY
+        </h2>
+        <p class="max-w-lg font-display text-2xl font-medium tracking-display text-zinc-950 sm:text-3xl sm:leading-snug">
+          I started learning by building systems from scratch, figuring things out one problem at a time.
+        </p>
+        <.link
+          navigate={~p"/learning"}
+          class="group inline-flex items-center gap-2 text-sm font-medium tracking-wide text-zinc-950 transition-opacity duration-200 hover:opacity-60"
+        >
+          <span class="underline decoration-zinc-300 underline-offset-4 transition-colors duration-200 group-hover:decoration-zinc-950">
+            Read my learning journey
+          </span>
+          <span class="transition-transform duration-200 group-hover:translate-x-0.5">→</span>
+        </.link>
+      </section>
+
+      <section class="space-y-8 border-t border-zinc-200 pt-16 sm:space-y-10 sm:pt-24">
+        <h2 class="font-display text-4xl font-semibold tracking-display text-zinc-950 sm:text-5xl">
+          ABOUT
+        </h2>
+        <div class="max-w-xl space-y-6">
+          <p class="font-display text-xl font-medium leading-snug tracking-display text-zinc-950 sm:text-2xl sm:leading-snug">
+            I didn't plan for programming to become part of my journey.
           </p>
-        </div>
-        <ul class="space-y-8">
-          <li :for={project <- @projects} class="space-y-2 border-t border-zinc-100 pt-8 first:border-t-0 first:pt-0">
-            <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-              <h3 class="text-lg font-medium text-zinc-900">{project.title}</h3>
-              <span class="text-sm text-zinc-400">{project.stack}</span>
-            </div>
-            <p class="max-w-2xl text-sm leading-relaxed text-zinc-600">
-              {project.description}
+          <div class="space-y-5 text-base leading-relaxed text-zinc-600 sm:text-lg sm:leading-relaxed">
+            <p>
+              I started learning because God led me to meet a friend who introduced me to programming. That became the beginning of my journey into software development.
             </p>
-          </li>
-        </ul>
+            <p>
+              Today, I'm working toward becoming a web developer, while continuing to learn and build with Elixir.
+            </p>
+            <p>
+              Through building different systems, I've learned that progress doesn't happen all at once. Be patient, take things step by step, and stay consistent.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="space-y-8 border-t border-zinc-200 pt-16 sm:space-y-10 sm:pt-24">
+        <h2 class="font-display text-4xl font-semibold tracking-display text-zinc-950 sm:text-5xl">
+          CONTACT
+        </h2>
+        <p class="max-w-md font-display text-2xl font-medium tracking-display text-zinc-950 sm:text-3xl sm:leading-snug">
+          Want to see what I'm building?
+        </p>
+        <a
+          href="https://github.com/ejegot"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group inline-flex items-center gap-2 text-sm font-medium tracking-wide text-zinc-950 transition-opacity duration-200 hover:opacity-60"
+        >
+          <span class="underline decoration-zinc-300 underline-offset-4 transition-colors duration-200 group-hover:decoration-zinc-950">
+            GitHub
+          </span>
+          <span class="transition-transform duration-200 group-hover:translate-x-0.5">→</span>
+        </a>
       </section>
     </div>
     """
   end
 
-  defp learning do
+  defp selected_work do
     [
       %{
-        title: "Elixir",
-        note: "Language fundamentals and functional patterns"
+        number: "01",
+        slug: "gym-system",
+        title: "Gym System",
+        summary: "Gym management system"
       },
       %{
-        title: "Phoenix & LiveView",
-        note: "Server-rendered interactive web apps"
+        number: "02",
+        slug: "basketball-system",
+        title: "Basketball System",
+        summary: "Basketball league system"
       },
       %{
-        title: "Tailwind CSS",
-        note: "Utility-first styling for clean, minimal UI"
-      }
-    ]
-  end
-
-  defp featured_projects do
-    [
-      %{
-        title: "Learning Portfolio",
-        stack: "Elixir · Phoenix · LiveView · Tailwind",
-        description:
-          "This site — a minimal place to introduce myself, track what I am learning, and showcase projects as I build them."
-      },
-      %{
-        title: "Coming soon",
-        stack: "In progress",
-        description:
-          "More projects will appear here as I finish them. Each one will document a concrete step in the journey."
+        number: "03",
+        slug: "aisof",
+        title: "AISOF",
+        summary: "Government procurement system"
       }
     ]
   end

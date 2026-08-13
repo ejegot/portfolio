@@ -55,6 +55,8 @@ defmodule PortfolioWeb do
       use Phoenix.LiveView,
         layout: {PortfolioWeb.Layouts, :app}
 
+      on_mount {PortfolioWeb.NavHook, :default}
+
       unquote(html_helpers())
     end
   end

@@ -14,12 +14,12 @@ defmodule PortfolioWeb.HomeLive do
   @impl true
   def render(assigns) do
     ~H"""
-    <div class="space-y-28 sm:space-y-36 lg:space-y-44">
-      <section class="space-y-8 pt-2 sm:space-y-10 sm:pt-6">
-        <p class="text-xs font-medium tracking-[0.18em] text-zinc-400 uppercase">
+    <div class="min-w-0 space-y-16 sm:space-y-36 lg:space-y-44">
+      <section class="space-y-6 pt-1 sm:space-y-10 sm:pt-6">
+        <p class="text-[0.7rem] font-medium leading-relaxed tracking-[0.12em] text-zinc-400 uppercase sm:text-xs sm:tracking-[0.18em]">
           WEB DEVELOPER · LEARNER · BUILDER
         </p>
-        <h1 class="max-w-2xl font-display text-4xl font-semibold tracking-display text-zinc-950 sm:text-5xl sm:leading-[1.08] lg:text-6xl lg:leading-[1.05]">
+        <h1 class="max-w-2xl font-display text-3xl font-semibold leading-tight tracking-display text-zinc-950 sm:text-5xl sm:leading-[1.08] lg:text-6xl lg:leading-[1.05]">
           I build systems while learning how software actually works.
         </h1>
         <p class="max-w-md text-base leading-relaxed text-zinc-600 sm:text-lg">
@@ -44,20 +44,20 @@ defmodule PortfolioWeb.HomeLive do
           <li :for={project <- @projects} class="border-b border-zinc-200">
             <.link
               navigate={~p"/projects/#{project.slug}"}
-              class="group grid grid-cols-[1fr_auto] items-end gap-6 py-8 transition-colors duration-200 hover:bg-zinc-100/70 sm:gap-10 sm:py-10 -mx-2 px-2 sm:-mx-3 sm:px-3"
+              class="group grid min-h-[4.5rem] grid-cols-[minmax(0,1fr)_auto] items-end gap-4 py-7 transition-colors duration-200 hover:bg-zinc-100/70 sm:min-h-0 sm:gap-10 sm:py-10 -mx-2 px-2 sm:-mx-3 sm:px-3"
             >
-              <div class="space-y-3">
+              <div class="min-w-0 space-y-2 sm:space-y-3">
                 <p class="text-xs tracking-[0.16em] text-zinc-400">
                   {project.number}
                 </p>
-                <h3 class="font-display text-2xl font-semibold tracking-display text-zinc-950 transition-transform duration-200 group-hover:translate-x-1 sm:text-3xl uppercase">
+                <h3 class="break-words font-display text-xl font-semibold tracking-display text-zinc-950 transition-transform duration-200 group-hover:translate-x-1 sm:text-3xl uppercase">
                   {project.title}
                 </h3>
-                <p class="text-base text-zinc-600">
+                <p class="text-sm leading-relaxed text-zinc-600 sm:text-base">
                   {project.summary}
                 </p>
               </div>
-              <span class="pb-1 text-xl text-zinc-400 transition-all duration-200 group-hover:translate-x-1 group-hover:text-zinc-950">
+              <span class="shrink-0 pb-1 text-xl text-zinc-400 transition-all duration-200 group-hover:translate-x-1 group-hover:text-zinc-950">
                 →
               </span>
             </.link>
@@ -65,11 +65,11 @@ defmodule PortfolioWeb.HomeLive do
         </ul>
       </section>
 
-      <section class="space-y-8 border-t border-zinc-200 pt-16 sm:space-y-10 sm:pt-24">
-        <h2 class="font-display text-xs font-semibold tracking-[0.18em] text-zinc-400">
+      <section class="space-y-6 border-t border-zinc-200 pt-10 sm:space-y-10 sm:pt-24">
+        <h2 class="font-display text-xs font-semibold tracking-[0.14em] text-zinc-400 sm:tracking-[0.18em]">
           LEARNING JOURNEY
         </h2>
-        <p class="max-w-lg font-display text-2xl font-medium tracking-display text-zinc-950 sm:text-3xl sm:leading-snug">
+        <p class="max-w-lg font-display text-xl font-medium leading-snug tracking-display text-zinc-950 sm:text-3xl sm:leading-snug">
           I started learning by building systems from scratch, figuring things out one problem at a time.
         </p>
         <.link
@@ -83,15 +83,15 @@ defmodule PortfolioWeb.HomeLive do
         </.link>
       </section>
 
-      <section class="space-y-8 border-t border-zinc-200 pt-16 sm:space-y-10 sm:pt-24">
-        <h2 class="font-display text-4xl font-semibold tracking-display text-zinc-950 sm:text-5xl">
+      <section class="space-y-6 border-t border-zinc-200 pt-10 sm:space-y-10 sm:pt-24">
+        <h2 class="font-display text-3xl font-semibold tracking-display text-zinc-950 sm:text-5xl">
           ABOUT
         </h2>
-        <div class="max-w-xl space-y-6">
+        <div class="max-w-xl space-y-5 sm:space-y-6">
           <p class="font-display text-xl font-medium leading-snug tracking-display text-zinc-950 sm:text-2xl sm:leading-snug">
             I didn't plan for programming to become part of my journey.
           </p>
-          <div class="space-y-5 text-base leading-relaxed text-zinc-600 sm:text-lg sm:leading-relaxed">
+          <div class="space-y-4 text-base leading-relaxed text-zinc-600 sm:space-y-5 sm:text-lg sm:leading-relaxed">
             <p>
               I started learning because God led me to meet a friend who introduced me to programming. That became the beginning of my journey into software development.
             </p>
@@ -105,11 +105,11 @@ defmodule PortfolioWeb.HomeLive do
         </div>
       </section>
 
-      <section class="space-y-8 border-t border-zinc-200 pt-16 sm:space-y-10 sm:pt-24">
-        <h2 class="font-display text-4xl font-semibold tracking-display text-zinc-950 sm:text-5xl">
+      <section class="space-y-6 border-t border-zinc-200 pt-10 sm:space-y-10 sm:pt-24">
+        <h2 class="font-display text-3xl font-semibold tracking-display text-zinc-950 sm:text-5xl">
           CONTACT
         </h2>
-        <p class="max-w-md font-display text-2xl font-medium tracking-display text-zinc-950 sm:text-3xl sm:leading-snug">
+        <p class="max-w-md font-display text-xl font-medium leading-snug tracking-display text-zinc-950 sm:text-3xl sm:leading-snug">
           Want to see what I'm building?
         </p>
         <a

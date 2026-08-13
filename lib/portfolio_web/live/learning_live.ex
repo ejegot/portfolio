@@ -14,9 +14,9 @@ defmodule PortfolioWeb.LearningLive do
   @impl true
   def render(assigns) do
     ~H"""
-    <div class="space-y-16 sm:space-y-20">
-      <section class="space-y-6 pt-2 sm:pt-6">
-        <h1 class="font-display text-4xl font-semibold tracking-display text-zinc-950 sm:text-5xl sm:leading-[1.05] lg:text-6xl">
+    <div class="min-w-0 space-y-12 sm:space-y-20">
+      <section class="space-y-4 pt-1 sm:space-y-6 sm:pt-6">
+        <h1 class="font-display text-3xl font-semibold leading-tight tracking-display text-zinc-950 sm:text-5xl sm:leading-[1.05] lg:text-6xl">
           LEARNING JOURNEY
         </h1>
         <p class="max-w-md text-base leading-relaxed text-zinc-600 sm:text-lg">
@@ -28,50 +28,50 @@ defmodule PortfolioWeb.LearningLive do
         <ol class="border-t border-zinc-200">
           <li
             :for={entry <- @entries}
-            class="space-y-8 border-b border-zinc-200 py-12 sm:space-y-10 sm:py-16"
+            class="space-y-6 border-b border-zinc-200 py-10 sm:space-y-10 sm:py-16"
           >
-            <header class="space-y-4">
+            <header class="space-y-3 sm:space-y-4">
               <time
-                class="block text-xs font-medium tracking-[0.16em] text-zinc-400 uppercase"
+                class="block text-xs font-medium tracking-[0.12em] text-zinc-400 uppercase sm:tracking-[0.16em]"
                 datetime={Date.to_iso8601(entry.date)}
               >
                 {Calendar.strftime(entry.date, "%B %-d, %Y")}
               </time>
-              <h2 class="font-display text-2xl font-semibold tracking-display text-zinc-950 sm:text-3xl sm:leading-snug">
+              <h2 class="break-words font-display text-xl font-semibold leading-snug tracking-display text-zinc-950 sm:text-3xl sm:leading-snug">
                 {entry.title}
               </h2>
             </header>
 
-            <dl class="space-y-7">
+            <dl class="space-y-6 sm:space-y-7">
               <div class="space-y-2">
-                <dt class="text-xs font-medium tracking-[0.14em] text-zinc-400 uppercase">
+                <dt class="text-xs font-medium tracking-[0.12em] text-zinc-400 uppercase sm:tracking-[0.14em]">
                   What I learned
                 </dt>
-                <dd class="text-base leading-relaxed text-zinc-600 sm:text-lg sm:leading-relaxed">
+                <dd class="break-words text-base leading-relaxed text-zinc-600 sm:text-lg sm:leading-relaxed">
                   {entry.what_i_learned}
                 </dd>
               </div>
               <div class="space-y-2">
-                <dt class="text-xs font-medium tracking-[0.14em] text-zinc-400 uppercase">
+                <dt class="text-xs font-medium tracking-[0.12em] text-zinc-400 uppercase sm:tracking-[0.14em]">
                   What I built
                 </dt>
-                <dd class="text-base leading-relaxed text-zinc-600 sm:text-lg sm:leading-relaxed">
+                <dd class="break-words text-base leading-relaxed text-zinc-600 sm:text-lg sm:leading-relaxed">
                   {entry.what_i_built}
                 </dd>
               </div>
               <div class="space-y-2">
-                <dt class="text-xs font-medium tracking-[0.14em] text-zinc-400 uppercase">
+                <dt class="text-xs font-medium tracking-[0.12em] text-zinc-400 uppercase sm:tracking-[0.14em]">
                   What I struggled with
                 </dt>
-                <dd class="text-base leading-relaxed text-zinc-600 sm:text-lg sm:leading-relaxed">
+                <dd class="break-words text-base leading-relaxed text-zinc-600 sm:text-lg sm:leading-relaxed">
                   {entry.what_i_struggled_with}
                 </dd>
               </div>
               <div class="space-y-2">
-                <dt class="text-xs font-medium tracking-[0.14em] text-zinc-400 uppercase">
+                <dt class="text-xs font-medium tracking-[0.12em] text-zinc-400 uppercase sm:tracking-[0.14em]">
                   Next step
                 </dt>
-                <dd class="text-base leading-relaxed text-zinc-600 sm:text-lg sm:leading-relaxed">
+                <dd class="break-words text-base leading-relaxed text-zinc-600 sm:text-lg sm:leading-relaxed">
                   {entry.next_step}
                 </dd>
               </div>

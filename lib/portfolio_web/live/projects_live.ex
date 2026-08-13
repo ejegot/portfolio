@@ -14,9 +14,9 @@ defmodule PortfolioWeb.ProjectsLive do
   @impl true
   def render(assigns) do
     ~H"""
-    <div class="space-y-16 sm:space-y-20">
-      <section class="space-y-6 pt-2 sm:pt-6">
-        <h1 class="font-display text-4xl font-semibold tracking-display text-zinc-950 sm:text-5xl sm:leading-[1.05] lg:text-6xl">
+    <div class="min-w-0 space-y-12 sm:space-y-20">
+      <section class="space-y-4 pt-1 sm:space-y-6 sm:pt-6">
+        <h1 class="font-display text-3xl font-semibold leading-tight tracking-display text-zinc-950 sm:text-5xl sm:leading-[1.05] lg:text-6xl">
           SELECTED WORK
         </h1>
         <p class="max-w-md text-base leading-relaxed text-zinc-600 sm:text-lg">
@@ -29,20 +29,20 @@ defmodule PortfolioWeb.ProjectsLive do
           <li :for={project <- @projects} class="border-b border-zinc-200">
             <.link
               navigate={~p"/projects/#{project.slug}"}
-              class="group grid grid-cols-[1fr_auto] items-end gap-6 py-8 transition-colors duration-200 hover:bg-zinc-100/70 sm:gap-10 sm:py-10 -mx-2 px-2 sm:-mx-3 sm:px-3"
+              class="group grid min-h-[4.5rem] grid-cols-[minmax(0,1fr)_auto] items-end gap-4 py-7 transition-colors duration-200 hover:bg-zinc-100/70 sm:min-h-0 sm:gap-10 sm:py-10 -mx-2 px-2 sm:-mx-3 sm:px-3"
             >
-              <div class="space-y-3">
+              <div class="min-w-0 space-y-2 sm:space-y-3">
                 <p class="text-xs tracking-[0.16em] text-zinc-400">
                   {project.number}
                 </p>
-                <h2 class="font-display text-2xl font-semibold tracking-display text-zinc-950 transition-transform duration-200 group-hover:translate-x-1 sm:text-3xl">
+                <h2 class="break-words font-display text-xl font-semibold tracking-display text-zinc-950 transition-transform duration-200 group-hover:translate-x-1 sm:text-3xl">
                   {project.title}
                 </h2>
-                <p class="text-base text-zinc-600">
+                <p class="text-sm leading-relaxed text-zinc-600 sm:text-base">
                   {project.summary}
                 </p>
               </div>
-              <span class="pb-1 text-xl text-zinc-400 transition-all duration-200 group-hover:translate-x-1 group-hover:text-zinc-950">
+              <span class="shrink-0 pb-1 text-xl text-zinc-400 transition-all duration-200 group-hover:translate-x-1 group-hover:text-zinc-950">
                 →
               </span>
             </.link>

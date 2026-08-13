@@ -9,7 +9,10 @@ defmodule PortfolioWeb.HomeLiveTest do
     assert html =~ "ELJHUN EGOT"
     assert html =~ "WEB DEVELOPER · LEARNER · BUILDER"
     assert html =~ "I build systems while learning how software actually works."
-    assert html =~ "Documenting my journey through Elixir, Phoenix, databases, and building real-world applications."
+
+    assert html =~
+             "Documenting my journey through Elixir, Phoenix, databases, and building real-world applications."
+
     assert html =~ "View my work"
     assert html =~ ~s(href="/projects")
 
@@ -25,7 +28,10 @@ defmodule PortfolioWeb.HomeLiveTest do
     assert html =~ ~s(href="/projects/aisof")
 
     assert html =~ "LEARNING JOURNEY"
-    assert html =~ "I started learning by building systems from scratch, figuring things out one problem at a time."
+
+    assert html =~
+             "I started learning by building systems from scratch, figuring things out one problem at a time."
+
     assert html =~ "Read my learning journey"
     assert html =~ ~s(href="/learning")
 

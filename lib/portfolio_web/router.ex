@@ -23,7 +23,6 @@ defmodule PortfolioWeb.Router do
     live "/projects/:slug", ProjectShowLive
   end
 
-
   # Other scopes may use custom stacks.
   # scope "/api", PortfolioWeb do
   #   pipe_through :api

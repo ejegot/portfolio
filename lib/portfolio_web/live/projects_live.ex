@@ -25,24 +25,24 @@ defmodule PortfolioWeb.ProjectsLive do
       </section>
 
       <section>
-        <ul class="border-t border-zinc-200">
-          <li :for={project <- @projects} class="border-b border-zinc-200">
+        <ul class="min-w-0 border-t border-zinc-200">
+          <li :for={project <- @projects} class="min-w-0 border-b border-zinc-200">
             <.link
               navigate={~p"/projects/#{project.slug}"}
-              class="group grid min-h-[4.5rem] grid-cols-[minmax(0,1fr)_auto] items-end gap-4 py-7 transition-colors duration-200 hover:bg-zinc-100/70 sm:min-h-0 sm:gap-10 sm:py-10 -mx-2 px-2 sm:-mx-3 sm:px-3"
+              class="project-list-item group grid min-h-[4.5rem] grid-cols-[minmax(0,1fr)_auto] items-end gap-4 py-7 sm:min-h-0 sm:gap-10 sm:py-10"
             >
               <div class="min-w-0 space-y-2 sm:space-y-3">
-                <p class="text-xs tracking-[0.16em] text-zinc-400">
+                <p class="text-xs tracking-[0.14em] text-zinc-400 sm:tracking-[0.16em]">
                   {project.number}
                 </p>
-                <h2 class="break-words font-display text-xl font-semibold tracking-display text-zinc-950 transition-transform duration-200 group-hover:translate-x-1 sm:text-3xl">
+                <h2 class="project-list-title break-words font-display text-2xl font-semibold tracking-display text-zinc-950 transition-transform duration-200 sm:text-3xl">
                   {project.title}
                 </h2>
                 <p class="text-sm leading-relaxed text-zinc-600 sm:text-base">
                   {project.summary}
                 </p>
               </div>
-              <span class="shrink-0 pb-1 text-xl text-zinc-400 transition-all duration-200 group-hover:translate-x-1 group-hover:text-zinc-950">
+              <span class="project-list-arrow shrink-0 pb-1 text-xl text-zinc-400 transition-all duration-200 group-hover:text-zinc-950">
                 →
               </span>
             </.link>

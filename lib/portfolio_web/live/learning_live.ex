@@ -25,14 +25,14 @@ defmodule PortfolioWeb.LearningLive do
       </section>
 
       <section>
-        <ol class="border-t border-zinc-200">
+        <ol class="min-w-0 border-t border-zinc-200">
           <li
             :for={entry <- @entries}
-            class="space-y-6 border-b border-zinc-200 py-10 sm:space-y-10 sm:py-16"
+            class="min-w-0 space-y-6 border-b border-zinc-200 py-10 sm:space-y-8 sm:py-14"
           >
             <header class="space-y-3 sm:space-y-4">
               <time
-                class="block text-xs font-medium tracking-[0.12em] text-zinc-400 uppercase sm:tracking-[0.16em]"
+                class="block text-xs font-medium tracking-[0.12em] text-zinc-400 uppercase sm:tracking-[0.14em]"
                 datetime={Date.to_iso8601(entry.date)}
               >
                 {Calendar.strftime(entry.date, "%B %-d, %Y")}
@@ -42,33 +42,33 @@ defmodule PortfolioWeb.LearningLive do
               </h2>
             </header>
 
-            <dl class="space-y-6 sm:space-y-7">
-              <div class="space-y-2">
-                <dt class="text-xs font-medium tracking-[0.12em] text-zinc-400 uppercase sm:tracking-[0.14em]">
+            <dl class="space-y-6 sm:space-y-8">
+              <div class="space-y-2 sm:space-y-3">
+                <dt class="detail-label">
                   What I learned
                 </dt>
                 <dd class="break-words text-base leading-relaxed text-zinc-600 sm:text-lg sm:leading-relaxed">
                   {entry.what_i_learned}
                 </dd>
               </div>
-              <div class="space-y-2">
-                <dt class="text-xs font-medium tracking-[0.12em] text-zinc-400 uppercase sm:tracking-[0.14em]">
+              <div class="space-y-2 sm:space-y-3">
+                <dt class="detail-label">
                   What I built
                 </dt>
                 <dd class="break-words text-base leading-relaxed text-zinc-600 sm:text-lg sm:leading-relaxed">
                   {entry.what_i_built}
                 </dd>
               </div>
-              <div class="space-y-2">
-                <dt class="text-xs font-medium tracking-[0.12em] text-zinc-400 uppercase sm:tracking-[0.14em]">
+              <div class="space-y-2 sm:space-y-3">
+                <dt class="detail-label">
                   What I struggled with
                 </dt>
                 <dd class="break-words text-base leading-relaxed text-zinc-600 sm:text-lg sm:leading-relaxed">
                   {entry.what_i_struggled_with}
                 </dd>
               </div>
-              <div class="space-y-2">
-                <dt class="text-xs font-medium tracking-[0.12em] text-zinc-400 uppercase sm:tracking-[0.14em]">
+              <div class="space-y-2 sm:space-y-3">
+                <dt class="detail-label">
                   Next step
                 </dt>
                 <dd class="break-words text-base leading-relaxed text-zinc-600 sm:text-lg sm:leading-relaxed">

@@ -20,12 +20,16 @@ defmodule PortfolioWeb.HomeLiveTest do
     assert html =~ "Gym System"
     assert html =~ "Gym management system"
     assert html =~ ~s(href="/projects/gym-system")
+    assert html =~ ~s(src="/images/gym-system-showcase.png")
     assert html =~ "Basketball System"
     assert html =~ "Basketball league system"
     assert html =~ ~s(href="/projects/basketball-system")
+    assert html =~ ~s(src="/images/basketball-system-showcase.png")
     assert html =~ "AISOF"
     assert html =~ "Government procurement system"
     assert html =~ ~s(href="/projects/aisof")
+    assert html =~ ~s(src="/images/aisof-showcase.png")
+    assert html =~ "View project"
 
     assert html =~ "LEARNING JOURNEY"
 

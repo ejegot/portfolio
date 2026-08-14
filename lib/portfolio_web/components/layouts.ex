@@ -24,7 +24,7 @@ defmodule PortfolioWeb.Layouts do
       aria-current={nav_active?(@current_path, @match) && "page"}
       class={[
         "inline-flex min-h-11 items-center whitespace-nowrap text-sm tracking-wide transition-colors duration-200 sm:min-h-0",
-        nav_active?(@current_path, @match) && "text-zinc-950",
+        nav_active?(@current_path, @match) && "font-medium text-zinc-950",
         !nav_active?(@current_path, @match) && "text-zinc-400 hover:text-zinc-950"
       ]}
     >

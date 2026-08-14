@@ -38,3 +38,328 @@
     96px 96px,
     96px 96px;
 }
+
+/* Homepage hero — typography + abstract systems schematic */
+.hero-name {
+  font-size: clamp(3.25rem, 14vw, 8rem);
+  line-height: 0.86;
+}
+
+.hero-name span {
+  display: block;
+  animation: hero-rise 0.7s ease both;
+}
+
+.hero-name span:nth-child(2) {
+  animation-delay: 0.08s;
+}
+
+.hero-identity,
+.hero-statement {
+  animation: hero-rise 0.7s ease both;
+}
+
+.hero-identity {
+  animation-delay: 0.02s;
+}
+
+.hero-statement {
+  animation-delay: 0.16s;
+}
+
+.hero-schematic svg {
+  overflow: visible;
+}
+
+.hero-schematic-line,
+.hero-node line {
+  stroke: rgba(24, 24, 27, 0.28);
+  stroke-width: 1;
+}
+
+.hero-node circle,
+.hero-node rect {
+  stroke: rgba(24, 24, 27, 0.42);
+  stroke-width: 1;
+  fill: rgba(24, 24, 27, 0.04);
+}
+
+.hero-schematic-line {
+  stroke-dasharray: 280;
+  stroke-dashoffset: 280;
+  animation: hero-draw 1.2s ease 0.2s forwards;
+}
+
+.hero-node {
+  transform-origin: center;
+  transition: transform 0.5s ease;
+}
+
+.hero-stage:hover .hero-node-1 {
+  transform: translateY(-5px);
+}
+
+.hero-stage:hover .hero-node-2 {
+  transform: translateX(4px);
+}
+
+.hero-stage:hover .hero-node-3 {
+  transform: translateY(5px);
+}
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes hero-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-name span,
+  .hero-identity,
+  .hero-statement,
+  .hero-schematic-line,
+  .hero-node {
+    animation: none;
+    transition: none;
+    opacity: 1;
+    transform: none;
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Homepage Selected Work */
+.work-visual {
+  overflow: hidden;
+}
+
+.work-visual-img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  transform: scale(1);
+  transform-origin: center;
+  transition: transform 0.45s ease;
+}
+
+.work-title,
+.work-cta {
+  transition: transform 0.35s ease;
+}
+
+.work-item {
+  animation: hero-rise 0.55s ease both;
+}
+
+.work-item:nth-child(1) {
+  animation-delay: 0.04s;
+}
+
+.work-item:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.work-item:nth-child(3) {
+  animation-delay: 0.16s;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .work-item:hover .work-visual-img {
+    transform: scale(1.03);
+  }
+
+  .work-item:hover .work-title,
+  .work-item:hover .work-cta {
+    transform: translateX(4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .work-item,
+  .work-visual-img,
+  .work-title,
+  .work-cta {
+    animation: none;
+    transition: none;
+    transform: none;
+  }
+}
+
+/* Homepage Learning Journey timeline */
+.journey-timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.journey-step {
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr);
+  gap: 0 1.25rem;
+  animation: hero-rise 0.55s ease both;
+}
+
+.journey-step:nth-child(1) {
+  animation-delay: 0.06s;
+}
+
+.journey-step-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 0.35rem;
+}
+
+.journey-step-number {
+  font-family: theme("fontFamily.display");
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: theme("colors.zinc.400");
+}
+
+.journey-cta {
+  transition: transform 0.35s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .journey-cta:hover {
+    transform: translateX(4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .journey-step,
+  .journey-cta {
+    animation: none;
+    transition: none;
+    transform: none;
+  }
+}
+
+/* Homepage About */
+.about-lead,
+.about-body {
+  animation: hero-rise 0.55s ease both;
+}
+
+.about-lead {
+  animation-delay: 0.06s;
+}
+
+.about-body {
+  animation-delay: 0.12s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-lead,
+  .about-body {
+    animation: none;
+  }
+}
+
+/* Homepage Contact */
+.contact-closing {
+  animation: hero-rise 0.55s ease both;
+  animation-delay: 0.06s;
+}
+
+.contact-link {
+  animation: hero-rise 0.55s ease both;
+  animation-delay: 0.12s;
+  transition: transform 0.35s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .contact-link:hover {
+    transform: translateX(4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-closing,
+  .contact-link {
+    animation: none;
+    transition: none;
+    transform: none;
+  }
+}
+
+/* Shared editorial typography */
+.editorial-label {
+  font-family: theme("fontFamily.display");
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: theme("colors.zinc.400");
+}
+
+@media (min-width: 640px) {
+  .editorial-label {
+    letter-spacing: 0.18em;
+  }
+}
+
+.detail-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: theme("colors.zinc.400");
+}
+
+@media (min-width: 640px) {
+  .detail-label {
+    letter-spacing: 0.14em;
+  }
+}
+
+.page-visual {
+  overflow: hidden;
+}
+
+.page-visual-img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Interior page project list */
+.project-list-title,
+.project-list-arrow {
+  transition: transform 0.35s ease, color 0.2s ease;
+}
+
+.project-list-item {
+  transition: transform 0.35s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .project-list-item:hover .project-list-title,
+  .project-list-item:hover .project-list-arrow {
+    transform: translateX(4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-list-item,
+  .project-list-title,
+  .project-list-arrow {
+    transition: none;
+    transform: none;
+  }
+}

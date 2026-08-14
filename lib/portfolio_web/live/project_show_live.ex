@@ -45,10 +45,7 @@ defmodule PortfolioWeb.ProjectShowLive do
         >
           {@project.short_description}
         </p>
-        <p
-          :if={@project.technologies != ""}
-          class="break-words text-xs font-medium leading-relaxed tracking-[0.08em] text-zinc-400 uppercase sm:tracking-[0.14em]"
-        >
+        <p :if={@project.technologies != ""} class="detail-label break-words">
           {@project.technologies}
         </p>
         <a
@@ -66,8 +63,11 @@ defmodule PortfolioWeb.ProjectShowLive do
       </header>
 
       <section class="border-t border-zinc-200">
-        <div :if={@project.overview != ""} class="space-y-3 border-b border-zinc-200 py-8 sm:py-14">
-          <h2 class="text-xs font-medium tracking-[0.12em] text-zinc-400 uppercase sm:tracking-[0.14em]">
+        <div
+          :if={@project.overview != ""}
+          class="space-y-3 border-b border-zinc-200 py-8 sm:space-y-4 sm:py-12"
+        >
+          <h2 class="detail-label">
             Overview
           </h2>
           <p class="break-words text-base leading-relaxed text-zinc-600 sm:text-lg sm:leading-relaxed">
@@ -75,8 +75,8 @@ defmodule PortfolioWeb.ProjectShowLive do
           </p>
         </div>
 
-        <div class="space-y-3 border-b border-zinc-200 py-8 sm:py-14">
-          <h2 class="text-xs font-medium tracking-[0.12em] text-zinc-400 uppercase sm:tracking-[0.14em]">
+        <div class="space-y-3 border-b border-zinc-200 py-8 sm:space-y-4 sm:py-12">
+          <h2 class="detail-label">
             What I built
           </h2>
           <p class="break-words text-base leading-relaxed text-zinc-600 sm:text-lg sm:leading-relaxed">
@@ -86,34 +86,36 @@ defmodule PortfolioWeb.ProjectShowLive do
 
         <div
           :if={@project.key_features != []}
-          class="space-y-3 border-b border-zinc-200 py-8 sm:py-14"
+          class="space-y-3 border-b border-zinc-200 py-8 sm:space-y-4 sm:py-12"
         >
-          <h2 class="text-xs font-medium tracking-[0.12em] text-zinc-400 uppercase sm:tracking-[0.14em]">
+          <h2 class="detail-label">
             Key Features
           </h2>
-          <ul class="space-y-2 text-base leading-relaxed text-zinc-600 sm:text-lg sm:leading-relaxed">
+          <ul class="space-y-2 text-base leading-relaxed text-zinc-600 sm:space-y-2.5 sm:text-lg sm:leading-relaxed">
             <li :for={feature <- @project.key_features} class="break-words">{feature}</li>
           </ul>
         </div>
 
         <div
           :if={visual = project_visual(@project.slug)}
-          class="space-y-4 border-b border-zinc-200 py-8 sm:space-y-5 sm:py-14"
+          class="space-y-3 border-b border-zinc-200 py-8 sm:space-y-4 sm:py-12"
         >
-          <h2 class="text-xs font-medium tracking-[0.12em] text-zinc-400 uppercase sm:tracking-[0.14em]">
+          <h2 class="detail-label">
             Project Visual
           </h2>
-          <img
-            src={visual.src}
-            alt={visual.alt}
-            width={visual.width}
-            height={visual.height}
-            class="block h-auto w-full max-w-full rounded-lg border border-zinc-200 object-contain"
-          />
+          <div class="page-visual">
+            <img
+              src={visual.src}
+              alt={visual.alt}
+              width={visual.width}
+              height={visual.height}
+              class="page-visual-img"
+            />
+          </div>
         </div>
 
-        <div class="space-y-3 border-b border-zinc-200 py-8 sm:py-14">
-          <h2 class="text-xs font-medium tracking-[0.12em] text-zinc-400 uppercase sm:tracking-[0.14em]">
+        <div class="space-y-3 border-b border-zinc-200 py-8 sm:space-y-4 sm:py-12">
+          <h2 class="detail-label">
             What I learned
           </h2>
           <p class="break-words text-base leading-relaxed text-zinc-600 sm:text-lg sm:leading-relaxed">
@@ -121,8 +123,8 @@ defmodule PortfolioWeb.ProjectShowLive do
           </p>
         </div>
 
-        <div class="space-y-3 border-b border-zinc-200 py-8 sm:py-14">
-          <h2 class="text-xs font-medium tracking-[0.12em] text-zinc-400 uppercase sm:tracking-[0.14em]">
+        <div class="space-y-3 border-b border-zinc-200 py-8 sm:space-y-4 sm:py-12">
+          <h2 class="detail-label">
             Challenges
           </h2>
           <p class="break-words text-base leading-relaxed text-zinc-600 sm:text-lg sm:leading-relaxed">
@@ -132,9 +134,9 @@ defmodule PortfolioWeb.ProjectShowLive do
 
         <div
           :if={@project.current_status != ""}
-          class="space-y-3 border-b border-zinc-200 py-8 sm:py-14"
+          class="space-y-3 border-b border-zinc-200 py-8 sm:space-y-4 sm:py-12"
         >
-          <h2 class="text-xs font-medium tracking-[0.12em] text-zinc-400 uppercase sm:tracking-[0.14em]">
+          <h2 class="detail-label">
             Current status
           </h2>
           <p class="break-words text-base leading-relaxed text-zinc-600 sm:text-lg sm:leading-relaxed">
